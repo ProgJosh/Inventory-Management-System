@@ -12,7 +12,7 @@ export const createSeedData = (): InventoryDatabase => ({
   users: [
     { id: 'usr-admin', name: 'Josh Velo', email: 'admin@ims.io', password: 'admin123', role: 'Admin', initials: 'OM', status: 'active', createdAt: daysAgo(240) },
     { id: 'usr-manager', name: 'Josh Velo', email: 'manager@ims.io', password: 'manager123', role: 'Manager', initials: 'EB', status: 'active', createdAt: daysAgo(185) },
-    { id: 'usr-staff', name: 'Josh Velo', email: 'staff@ims.io', password: 'staff123', role: 'Staff', initials: 'MC', status: 'active', createdAt: daysAgo(95) },
+    { id: 'usr-staff', name: 'Josh Velo', email: 'staff@ims.io', password: 'staff123', role: 'Staff', initials: 'JV', status: 'active', createdAt: daysAgo(95) },
   ],
   categories: [
     { id: 'cat-electronics', name: 'Electronics', description: 'Computers, accessories, and office electronics', color: '#2563eb', createdAt: daysAgo(180) },
