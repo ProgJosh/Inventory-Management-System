@@ -1,4 +1,4 @@
-# StockPilot Inventory Management System
+# Inventory Management System
 
 StockPilot is a responsive, local-first inventory management application for small and medium-sized teams. It includes a role-aware workspace, product catalog, stock operations, suppliers, categories, reporting, exports, inventory alerts, and a complete audit trail.
 
