@@ -6,9 +6,9 @@ StockPilot is a responsive, local-first inventory management application for sma
 
 | Role | Email | Password | Access |
 | --- | --- | --- | --- |
-| Admin | `admin@stockpilot.io` | `admin123` | Full workspace, including audit log and demo reset |
-| Manager | `manager@stockpilot.io` | `manager123` | Catalog, supplier, category, stock, and report management |
-| Staff | `staff@stockpilot.io` | `staff123` | Dashboard, read-only catalog, stock transactions, and reports |
+| Admin | `admin@ims.io` | `admin123` | Full workspace, including audit log and demo reset |
+| Manager | `manager@ims.io` | `manager123` | Catalog, supplier, category, stock, and report management |
+| Staff | `staff@ims.io` | `staff123` | Dashboard, read-only catalog, stock transactions, and reports |
 
 For security, these accounts are not displayed or prefilled on the login screen. Sign in as Admin to create additional accounts and assign Admin, Manager, or Staff access from **Users & roles**.
 
