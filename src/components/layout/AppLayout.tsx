@@ -11,7 +11,7 @@ import { cn, getStockStatus } from '../../lib/utils';
 import { Badge, ProductThumb } from '../ui';
 
 const navItems = [
-  { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
+  { to: '/dashboard', label: 'Overview', icon: LayoutDashboard, end: true },
   { to: '/products', label: 'Products', icon: Package },
   { to: '/transactions', label: 'Transactions', icon: ClipboardList },
   { to: '/suppliers', label: 'Suppliers', icon: Truck },
@@ -41,7 +41,7 @@ export function AppLayout() {
 
   const sidebar = <>
     <div className={cn('flex h-20 items-center border-b border-slate-800/80 px-5', collapsed ? 'justify-center' : 'justify-between')}>
-      <button className="flex items-center gap-3 overflow-hidden text-left" onClick={() => navigate('/')}>
+      <button className="flex items-center gap-3 overflow-hidden text-left" onClick={() => navigate('/dashboard')}>
         <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-600 text-white shadow-lg shadow-brand-950/20"><Boxes size={22} strokeWidth={2.4} /></span>
         {!collapsed && <span><span className="block font-display text-lg font-extrabold tracking-tight text-white">InvenTrack</span><span className="block text-[10px] font-bold uppercase tracking-[.18em] text-slate-500">Inventory Management System</span></span>}
       </button>

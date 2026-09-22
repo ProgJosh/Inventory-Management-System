@@ -15,7 +15,7 @@ export function LoginPage() {
   const [remember, setRemember] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  if (user) return <Navigate to="/" replace />;
+  if (user) return <Navigate to="/dashboard" replace />;
   const submit = async (event: React.FormEvent) => {
     event.preventDefault(); setError(''); setSubmitting(true);
     try { await login(email, password, remember, role); } catch (reason) { setError(reason instanceof Error ? reason.message : 'Unable to sign in.'); } finally { setSubmitting(false); }

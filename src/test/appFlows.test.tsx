@@ -13,15 +13,23 @@ describe('StockPilot UI workflows', () => {
   beforeEach(() => { localStorage.clear(); sessionStorage.clear(); window.history.replaceState({}, '', '/login'); });
   afterEach(cleanup);
 
+  it('shows the public landing page and links visitors to the live workspace', async () => {
+    window.history.replaceState({}, '', '/');
+    renderApp();
+    expect(await screen.findByRole('heading', { name: /know what you have/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /explore the live demo/i })).toHaveAttribute('href', '/login');
+    expect(screen.getByRole('link', { name: /create a workspace/i })).toHaveAttribute('href', '/register');
+  });
+
   it('logs in as Admin, navigates to products, and searches by SKU', async () => {
     const user = userEvent.setup();
     renderApp();
     expect(await screen.findByRole('heading', { name: 'Sign in to your workspace' })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: /^admin/i }));
-    await user.type(screen.getByLabelText('Email address'), 'admin@stockpilot.io');
+    await user.type(screen.getByLabelText('Email address'), 'admin@ims.io');
     await user.type(screen.getByLabelText('Password'), 'admin123');
     await user.click(screen.getByRole('button', { name: /sign in/i }));
-    expect(await screen.findByRole('heading', { name: /good (morning|afternoon|evening), olivia/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /good (morning|afternoon|evening), josh/i })).toBeInTheDocument();
     expect(sessionStorage.getItem('stockpilot_session_v1')).not.toBeNull();
     expect(localStorage.getItem('stockpilot_session_v1')).toBeNull();
     await user.click(screen.getByRole('link', { name: /^products/i }));
@@ -36,11 +44,11 @@ describe('StockPilot UI workflows', () => {
     const user = userEvent.setup();
     renderApp();
     expect(await screen.findByRole('heading', { name: 'Sign in to your workspace' })).toBeInTheDocument();
-    await user.type(screen.getByLabelText('Email address'), 'staff@stockpilot.io');
+    await user.type(screen.getByLabelText('Email address'), 'staff@ims.io');
     await user.type(screen.getByLabelText('Password'), 'staff123');
     await user.click(screen.getByLabelText('Keep me signed in'));
     await user.click(screen.getByRole('button', { name: /sign in/i }));
-    expect(await screen.findByRole('heading', { name: /good (morning|afternoon|evening), mia/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /good (morning|afternoon|evening), josh/i })).toBeInTheDocument();
     expect(localStorage.getItem('stockpilot_session_v1')).not.toBeNull();
     expect(screen.queryByRole('link', { name: /audit log/i })).not.toBeInTheDocument();
     await user.click(screen.getByRole('link', { name: /^products/i }));

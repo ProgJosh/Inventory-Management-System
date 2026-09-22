@@ -19,7 +19,7 @@ export function RegisterPage() {
   const [accepted, setAccepted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  if (user) return <Navigate to="/" replace />;
+  if (user) return <Navigate to="/dashboard" replace />;
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault(); setError('');

@@ -16,7 +16,7 @@ export function ForgotPasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  if (user) return <Navigate to="/" replace />;
+  if (user) return <Navigate to="/dashboard" replace />;
 
   const sendCode = async (event: React.FormEvent) => {
     event.preventDefault(); setError(''); setSubmitting(true);

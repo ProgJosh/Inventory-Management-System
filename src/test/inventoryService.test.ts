@@ -10,8 +10,8 @@ class MemoryStorage implements StorageAdapter {
   removeItem(key: string) { this.values.delete(key); }
 }
 
-const admin: User = { id: 'usr-admin', name: 'Olivia Martin', email: 'admin@stockpilot.io', role: 'Admin', initials: 'OM' };
-const staff: User = { id: 'usr-staff', name: 'Mia Chen', email: 'staff@stockpilot.io', role: 'Staff', initials: 'MC' };
+const admin: User = { id: 'usr-admin', name: 'Josh Velo', email: 'admin@ims.io', role: 'Admin', initials: 'JV' };
+const staff: User = { id: 'usr-staff', name: 'Josh Velo', email: 'staff@ims.io', role: 'Staff', initials: 'JV' };
 const newProduct: ProductInput = { sku: 'ELE-MSE-099', barcode: '810045672099', name: 'Orbit Wireless Mouse', categoryId: 'cat-electronics', supplierId: 'sup-nova', cost: 22, sellingPrice: 39, quantity: 12, reorderLevel: 4, image: '🖱️' };
 
 describe('InventoryService main workflows', () => {
@@ -24,10 +24,10 @@ describe('InventoryService main workflows', () => {
   });
 
   it('authenticates valid demo users and rejects invalid credentials', async () => {
-    const user = await service.authenticate('ADMIN@stockpilot.io', 'admin123');
+    const user = await service.authenticate('ADMIN@ims.io', 'admin123');
     expect(user.role).toBe('Admin');
     expect(user).not.toHaveProperty('password');
-    await expect(service.authenticate('admin@stockpilot.io', 'wrong')).rejects.toThrow('Email or password is incorrect');
+    await expect(service.authenticate('admin@ims.io', 'wrong')).rejects.toThrow('Email or password is incorrect');
   });
 
   it('registers new accounts as Staff and prevents duplicate registration', async () => {
@@ -40,18 +40,18 @@ describe('InventoryService main workflows', () => {
   });
 
   it('resets a password using an expiring one-time verification code', async () => {
-    const code = await service.requestPasswordReset('staff@stockpilot.io');
+    const code = await service.requestPasswordReset('staff@ims.io');
     expect(code).toMatch(/^\d{6}$/);
-    await expect(service.resetPassword('staff@stockpilot.io', '000000', 'newpass123')).rejects.toThrow('invalid or has expired');
-    await service.resetPassword('staff@stockpilot.io', code, 'newpass123');
-    await expect(service.authenticate('staff@stockpilot.io', 'staff123')).rejects.toThrow();
-    expect(await service.authenticate('staff@stockpilot.io', 'newpass123')).toMatchObject({ role: 'Staff' });
+    await expect(service.resetPassword('staff@ims.io', '000000', 'newpass123')).rejects.toThrow('invalid or has expired');
+    await service.resetPassword('staff@ims.io', code, 'newpass123');
+    await expect(service.authenticate('staff@ims.io', 'staff123')).rejects.toThrow();
+    expect(await service.authenticate('staff@ims.io', 'newpass123')).toMatchObject({ role: 'Staff' });
   });
 
   it('creates a product, adds an audit record, and prevents duplicate SKUs', () => {
     const database = service.addProduct(newProduct, admin);
     expect(database.products[0]).toMatchObject({ name: 'Orbit Wireless Mouse', sku: 'ELE-MSE-099', quantity: 12 });
-    expect(database.auditLogs[0]).toMatchObject({ action: 'Product created', userName: 'Olivia Martin' });
+    expect(database.auditLogs[0]).toMatchObject({ action: 'Product created', userName: 'Josh Velo' });
     expect(() => service.addProduct({ ...newProduct, name: 'Duplicate mouse' }, admin)).toThrow('SKU is already in use');
     expect(() => service.addProduct({ ...newProduct, sku: 'OTHER-100' }, staff)).toThrow('permission');
   });
